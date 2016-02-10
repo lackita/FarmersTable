@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+        <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+        <script>
+         function init() {
+             var stage = new createjs.Stage("game");
+
+             var ground = new createjs.Shape();
+             ground.graphics.beginFill("Black").drawRect(0, 150, stage.canvas.width, stage.canvas.height - 150);
+             stage.addChild(ground);
+
+             var rect = new createjs.Shape();
+             rect.graphics.beginFill("Orange").drawRect(100, 100, 50, 50);
+             stage.addChild(rect);
+
+             createjs.Tween.get(rect, { loop: true })
+                     .to({ x: 200 }, 1000, createjs.Ease.getPowInOut(4))
+                     .to({ x: 0 }, 800, createjs.Ease.getPowInOut(2));
+
+             createjs.Ticker.setFPS(60);
+             createjs.Ticker.addEventListener("tick", stage);
+         }
+        </script>
+    </head>
+    <body onload="init();">
+        <canvas id="game" width="500" height="300"></canvas>
+    </body>
+</html>
